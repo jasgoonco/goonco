@@ -51,7 +51,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "814e947e7345e64a77153d618cc32b644498d6dd136035d8e42ff158fa640702"
+      "sha256": "07a379b4c91834eba445b08cf67c5b16832db6351d15cd849b2f170120f74ab9"
     },
     {
       "path": "public/api.js",
@@ -63,7 +63,7 @@
     },
     {
       "path": "public/chat-planner.js",
-      "sha256": "9af79a3bb9aee580a3484e01909e285c766dae326a7c1f8871ec077cd9dd79a3"
+      "sha256": "255739bc27bfca31d630454a761d604a936dff5d59f6b7093cae9c0bb2b0f10d"
     },
     {
       "path": "public/collaboration.js",
@@ -91,19 +91,19 @@
     },
     {
       "path": "public/learning-report.js",
-      "sha256": "8dcb987d9fbf8a2e355225d1f8b281b28fbb766e7de1f7f8a1f7e435d565390c"
+      "sha256": "45a6609714c773e666054275b170671bb7cfd3058d5b22c8a5c7a189b11ae106"
     },
     {
       "path": "public/member-workspace.js",
-      "sha256": "6f8a2cb495daee9d7f60becc6059882ce6afc0659e209d8e9e22622da2684a71"
+      "sha256": "5147b5ad7d85d26e4100b6612528f08f55d4a4d026ecb95ebcde9bb63b8db5f3"
     },
     {
       "path": "public/research-chat.js",
-      "sha256": "fb0fefbf54b60229574c665073aaffa5dc82ceb08fc9a8aadd0c4365a6aa82d5"
+      "sha256": "b6fc0ed09f8763d2fa72209ebcff5afaab9877532d22293b0ce61ad50baff253"
     },
     {
       "path": "public/research-topics.js",
-      "sha256": "3a2d7647e1455e820d2b3d4899a9bc5faab5b141cfc19f6bedd29ea730fbe2fe"
+      "sha256": "92a54fc566ff21736eadb1ca049d2fa7fd7db47582c669cd19c9c62ac93ba3bc"
     },
     {
       "path": "public/reviewer-policy.js",
@@ -119,11 +119,11 @@
     },
     {
       "path": "README.md",
-      "sha256": "93955f1bd0aa1d376398ac75329fb7841e5bdaa1c6930b1677409c1dc1a058ff"
+      "sha256": "54c7f4c6615d22398cb5bc54d3f3636e205814d2d3372aa1ebcf500214de20a6"
     },
     {
       "path": "scripts/build.mjs",
-      "sha256": "b612238eb23ed6218d04461e013dc5489334f590c382a2824e32cd16c219b564"
+      "sha256": "97d7b5b2c7ba2fafdadafcd272a9f88f964d9c249aa740a3f0d9ea02c276e471"
     },
     {
       "path": "scripts/build.sh",
@@ -156,6 +156,10 @@
     {
       "path": "tests/member-workspace.test.mjs",
       "sha256": "2f3cd9cd7856d188c30bec9a0662571b2b7a60a63579951036dfa1646ee9c7c9"
+    },
+    {
+      "path": "tests/oncology-search.test.mjs",
+      "sha256": "c315b520a6667381e0c9690e42ce8be89e940ed6a067f6dc00ff12b2cf0210aa"
     },
     {
       "path": "tests/pin-gate.test.mjs",
@@ -191,7 +195,7 @@
     },
     {
       "path": "worker/index.js",
-      "sha256": "52eacb4a12c1bc8487ac2b8115f8a98f56df1e741b2f4272128044b5f2cde5ca"
+      "sha256": "df97d01ee0e01a98c4acf5b12650db48e3196b1ade413873a509d9b10970177f"
     },
     {
       "path": "worker/pin-gate.js",
@@ -203,11 +207,11 @@
     },
     {
       "path": "worker/public-connectors.js",
-      "sha256": "187e14b6ca170557e1b98570445589b0d28801091a622f775316ac03059a2a03"
+      "sha256": "a8157cf959f7ea77b5f0218032af7d974646acda5889b0ae47e8780ee0cecf0e"
     },
     {
       "path": "worker/research-query.js",
-      "sha256": "a0e8d2c3b02d5f31c0502791698f5e514a012d210bee7a93039cb3bdbcf30377"
+      "sha256": "3f3693d46c39ee4f32bf791f2b04e7fc01c33921c47eed0af049cc75d4f64c94"
     }
   ]
 }

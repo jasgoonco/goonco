@@ -33,3 +33,6 @@ See CONTRIBUTING.md, GOVERNANCE.md, SECURITY.md, CODE_OF_CONDUCT.md and SUPPORT_
 ## License and data rights
 
 The original MVP code and accompanying contribution documentation are MIT licensed; commercial reuse is permitted with required notices. This license does not grant rights in third-party API content, publications, trademarks or patient/institutional information. Data-source licensing and scientific approvals are separate and remain pending. Example values are synthetic. Code publication does not approve clinical use.
+
+
+Oncology discovery: search supports All oncology and 28 listed cancer categories across PubMed, Europe PMC and ClinicalTrials.gov. Only recognized cancer/topic settings are transmitted, never raw questions. Check the displayed scope; arbitrary medicine names and detailed natural-language concepts are not yet searched. Genomic connectors remain fixed prostate snapshots and are excluded from other cancer scopes. Broad-cancer 8D reports are research-planning templates, not disease-specific reviewed explanations.

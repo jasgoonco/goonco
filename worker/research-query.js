@@ -9,9 +9,11 @@ export function summarizeFactorial(data){
 }
 export function validateResearchQuery(input){
  if(!input||typeof input!=='object'||Array.isArray(input))return 'Expected a structured research query.';
- const allowed=new Set(['kind','context','recruiting','topic']);if(Object.keys(input).some(k=>!allowed.has(k)))return 'Only structured search settings are accepted. Do not send a chat transcript, patient information, SQL or an arbitrary URL.';
+ const allowed=new Set(['kind','context','recruiting','topic','cancerType']);if(Object.keys(input).some(k=>!allowed.has(k)))return 'Only structured search settings are accepted. Do not send a chat transcript, patient information, SQL or an arbitrary URL.';
  if(!['overview','trials','publications','genomics','doe-demo'].includes(input.kind))return 'Choose a supported research view.';
  if(input.topic!==undefined&&!Object.hasOwn(RESEARCH_TOPICS,input.topic))return 'Choose a supported research topic.';
+ if(input.cancerType!==undefined&&!Object.hasOwn(CANCER_TYPES,input.cancerType))return 'Choose a supported cancer type.';
+ if(input.topic==='psa'&&input.cancerType&&input.cancerType!=='prostate')return 'PSA search is prostate-specific. Choose prostate cancer.';
  if(input.context!==undefined&&!['all','localized','metastatic'].includes(input.context))return 'Choose a supported broad keyword context.';
  if(input.recruiting!==undefined&&typeof input.recruiting!=='boolean')return 'Recruitment filter must be true or false.';
  return null;
@@ -20,7 +22,9 @@ export async function runResearchQuery(input,fetcher=fetch,useCache=true){
  const error=validateResearchQuery(input);if(error)throw new Error(error);
  if(input.kind==='doe-demo')return summarizeFactorial(DOE_DEMO);
  const sets={overview:['pubmed','europepmc','clinicaltrials','gdc','cbioportal'],trials:['clinicaltrials'],publications:['pubmed','europepmc'],genomics:['gdc','cbioportal']};
- const sources=input.kind==='overview'&&input.topic&&input.topic!=='general'?['pubmed','europepmc','clinicaltrials']:sets[input.kind];
- return publicMetadata(sources,input.context||'all',input.recruiting||false,fetcher,useCache,input.topic||'general');
+ let sources=input.kind==='overview'&&input.topic&&input.topic!=='general'?['pubmed','europepmc','clinicaltrials']:sets[input.kind];
+ if(input.kind==='genomics'&&input.cancerType&&input.cancerType!=='prostate')sources=['pubmed','europepmc'];
+ if(input.cancerType&&input.cancerType!=='prostate')sources=sources.filter(id=>!['gdc','cbioportal'].includes(id));
+ return publicMetadata(sources,input.context||'all',input.recruiting||false,fetcher,useCache,input.topic||'general',input.cancerType||'prostate');
 }
 async function readResearchBody(request){const reader=request.body?.getReader();if(!reader)throw new Error('Missing query.');let size=0;const chunks=[];try{for(;;){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>2048){await reader.cancel();throw new Error('Query too large.');}chunks.push(value);}}finally{reader.releaseLock();}const all=new Uint8Array(size);let at=0;for(const chunk of chunks){all.set(chunk,at);at+=chunk.byteLength;}return JSON.parse(new TextDecoder().decode(all));}
