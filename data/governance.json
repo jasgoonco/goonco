@@ -1,0 +1,81 @@
+{
+  "version": "0.1",
+  "status": "Proposed operating model \u2014 qualified review and role appointments pending",
+  "operatingScope": "Public-source metadata and synthetic examples only",
+  "founderRole": "Facilitator and product steward; no automatic scientific or privacy approval authority",
+  "roles": [
+    {
+      "role": "Facilitator / product steward",
+      "responsibility": "Coordinate scope, backlog, volunteers and transparent decisions.",
+      "authority": "Product coordination only; cannot self-appoint as scientific or privacy reviewer."
+    },
+    {
+      "role": "Scientific reviewer",
+      "responsibility": "Assess relevance, study design, claim support and limitations.",
+      "authority": "Scientific recommendation within verified expertise; independent from the contributor."
+    },
+    {
+      "role": "Data / licensing steward",
+      "responsibility": "Check source identity, dataset versions, permitted purpose, license and redistribution terms.",
+      "authority": "Dataset-use recommendation; source approval does not grant dataset access."
+    },
+    {
+      "role": "Privacy / security reviewer",
+      "responsibility": "Assess disclosure, access, retention, abuse and operational threats.",
+      "authority": "Block unsafe release or collection; private health-data scope remains closed."
+    },
+    {
+      "role": "Release maintainer",
+      "responsibility": "Verify required reviews, tests, conflict declarations and decision records.",
+      "authority": "Publish only when scoped approvals are complete; cannot override missing specialist review."
+    },
+    {
+      "role": "Contributor / volunteer",
+      "responsibility": "Provide drafts, code, documentation or permitted metadata.",
+      "authority": "No approval, production data access or publication rights by joining."
+    }
+  ],
+  "gates": [
+    {
+      "name": "Contributor verification",
+      "evidence": "Relevant experience, public credentials/work samples, scope and conflicts; named verifier.",
+      "outcome": "Bounded role and least-privilege access; not automatic expert authority."
+    },
+    {
+      "name": "Source review",
+      "evidence": "Official provenance, scientific relevance, rights, version, reviewer and expiry.",
+      "outcome": "Approve only a defined discovery purpose; datasets remain separately gated."
+    },
+    {
+      "name": "Dataset-use review",
+      "evidence": "Dataset/version, permitted purpose/audience, licensing and privacy determination.",
+      "outcome": "Allow only the approved use, or quarantine/deny."
+    },
+    {
+      "name": "Claim review",
+      "evidence": "Exact citation support, evidence type, certainty, limitations and independent scientific decision.",
+      "outcome": "Approve a specific claim version; no promotion of AI output by default."
+    },
+    {
+      "name": "Release review",
+      "evidence": "All applicable independent reviews, security tests, audience and corrections plan.",
+      "outcome": "Maintainer records release or refuses publication."
+    },
+    {
+      "name": "Monitoring / correction",
+      "evidence": "Retraction, expiry, permission withdrawal, incident or failed effectiveness.",
+      "outcome": "Suspend dependent use, review impact, correct/revoke and retain controlled history."
+    }
+  ],
+  "releaseRules": [
+    "No contributor may approve their own scientific claim.",
+    "Scientific and rights/privacy review are separate decisions; no single-person approval for a real evidence release.",
+    "Conflicts must be declared and a conflicted reviewer replaced for the affected decision.",
+    "Unassigned roles and missing, expired or revoked approvals block real-data release.",
+    "Public sharing requires explicit authority and review; it is never an automatic tier progression.",
+    "No patient uploads, medical recommendations, real source approval or email submissions are enabled in this MVP."
+  ],
+  "assignments": [],
+  "activeApprovals": 0,
+  "writesEnabled": false
+}

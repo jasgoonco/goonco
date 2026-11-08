@@ -1,0 +1,35 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {createHash,webcrypto} from 'node:crypto';
+if(!globalThis.crypto)globalThis.crypto=webcrypto;
+const source=await readFile(new URL('../dist/server/index.js',import.meta.url),'utf8');
+const {default:worker,createReviewSession,validReviewSession}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+// Test fixture credentials only. Production uses randomly generated runtime secrets.
+const PIN='135724681357';
+const env={REVIEW_PIN_HASH:createHash('sha256').update(PIN).digest('hex'),REVIEW_SESSION_SECRET:'a'.repeat(64)};
+const origin='https://review.example.org';
+const req=(path,options={},identity='test-owner')=>new Request(origin+path,{...options,headers:{'oai-authenticated-user-id':identity,...options.headers}});
+const unlock=(pin=PIN,identity='test-owner',headers={})=>worker.fetch(req('/review/unlock',{method:'POST',headers:{origin,'content-type':'application/x-www-form-urlencoded',...headers},body:new URLSearchParams({pin})},identity),env);
+test('no platform identity cannot reach PIN or application',async()=>{const r=await worker.fetch(new Request(origin+'/'),env);assert.equal(r.status,401);assert.doesNotMatch(await r.text(),/Candidate sources/);});
+test('missing or weak runtime secrets fail closed',async()=>{for(const bad of [{},{...env,REVIEW_SESSION_SECRET:'weak'},{...env,REVIEW_PIN_HASH:'broken'}])assert.equal((await worker.fetch(req('/'),bad)).status,503);});
+test('locked root shows form but no app or sources',async()=>{const r=await worker.fetch(req('/'),env);const body=await r.text();assert.equal(r.status,200);assert.match(body,/Enter the review PIN/);assert.doesNotMatch(body,/app\.js|National Cancer Institute|contribution-form/);assert.match(r.headers.get('content-security-policy'),/form-action 'self'/);});
+test('API and source assets denied without cookie',async()=>{for(const path of ['/api/v1/sources','/api/v1/analytics','/app.js','/contributions.js','/styles.css'])assert.equal((await worker.fetch(req(path),env)).status,401);});
+test('incorrect PIN is generic and sets no access cookie',async()=>{const r=await unlock('000000000000','wrong-pin-user');assert.equal(r.status,401);assert.equal(r.headers.get('set-cookie'),null);assert.doesNotMatch(await r.text(),new RegExp(PIN));});
+test('cross-origin unlock, email and lock refused',async()=>{for(const path of ['/review/unlock','/review/request-pin','/review/lock']){const r=await worker.fetch(req(path,{method:'POST',headers:{origin:'https://attacker.example','content-type':'application/x-www-form-urlencoded'},body:'pin='+PIN}),env);assert.equal(r.status,403);}});
+test('non-POST auth routes refused',async()=>{for(const path of ['/review/unlock','/review/request-pin','/review/lock'])assert.equal((await worker.fetch(req(path),env)).status,405);});
+test('correct PIN issues secure signed session and safe redirect',async()=>{const r=await unlock();assert.equal(r.status,303);assert.equal(r.headers.get('location'),'/');const cookie=r.headers.get('set-cookie');for(const part of ['__Host-goonco_review=','HttpOnly','Secure','SameSite=Strict','Path=/','Max-Age=3600'])assert.ok(cookie.includes(part));assert.ok(!cookie.includes(PIN));});
+test('valid session unlocks HTML, modules and API',async()=>{const r=await unlock(PIN,'success-user');const cookie=r.headers.get('set-cookie').split(';')[0];for(const path of ['/','/app.js','/api/v1/sources'])assert.equal((await worker.fetch(req(path,{headers:{cookie}},'success-user'),env)).status,200);});
+test('cookie cannot be reused by another signed-in user',async()=>{const token=await createReviewSession('owner-a',env,origin);assert.equal(await validReviewSession(token,'owner-b',env,origin),false);});
+test('cookie cannot be reused on another origin',async()=>{const token=await createReviewSession('owner-a',env,origin);assert.equal(await validReviewSession(token,'owner-a',env,'https://other.example'),false);});
+test('tampered, malformed and oversized cookies denied',async()=>{const token=await createReviewSession('owner-a',env,origin);for(const candidate of [token.slice(0,-8)+'aaaaaaaa','broken','a'.repeat(1025)])assert.equal(await validReviewSession(candidate,'owner-a',env,origin),false);});
+test('expired session denied',async()=>{const token=await createReviewSession('owner-a',env,origin,Date.now()-3601000);assert.equal(await validReviewSession(token,'owner-a',env,origin),false);});
+test('PIN or signing-key rotation invalidates existing cookies',async()=>{const token=await createReviewSession('owner-a',env,origin);assert.equal(await validReviewSession(token,'owner-a',{...env,REVIEW_PIN_HASH:'b'.repeat(64)},origin),false);assert.equal(await validReviewSession(token,'owner-a',{...env,REVIEW_SESSION_SECRET:'c'.repeat(64)},origin),false);});
+test('lock expires the review cookie',async()=>{const r=await worker.fetch(req('/review/lock',{method:'POST',headers:{origin}}),env);assert.equal(r.status,303);assert.match(r.headers.get('set-cookie'),/Max-Age=0/);});
+test('attempt throttling stops repeated wrong guesses in an isolate',async()=>{for(let i=0;i<8;i++)assert.equal((await unlock('000000000000','rate-limit-user')).status,401);const r=await unlock(PIN,'rate-limit-user');assert.equal(r.status,429);assert.ok(Number(r.headers.get('retry-after'))>0);});
+test('email request honestly fails while service deferred',async()=>{const r=await worker.fetch(req('/review/request-pin',{method:'POST',headers:{origin}}),env);assert.equal(r.status,503);assert.match(await r.text(),/No email was sent/);});
+test('oversized or unsupported unlock body refused',async()=>{assert.equal((await worker.fetch(req('/review/unlock',{method:'POST',headers:{origin,'content-type':'application/json'},body:'{}'}),env)).status,415);assert.equal((await worker.fetch(req('/review/unlock',{method:'POST',headers:{origin,'content-type':'application/x-www-form-urlencoded'},body:'pin='+'1'.repeat(3000)}),env)).status,413);});
+test('duplicate PIN fields refused',async()=>{const r=await worker.fetch(req('/review/unlock',{method:'POST',headers:{origin,'content-type':'application/x-www-form-urlencoded'},body:'pin='+PIN+'&pin='+PIN},'duplicate-user'),env);assert.equal(r.status,401);});
+test('HEAD on locked app returns no body',async()=>{const r=await worker.fetch(req('/',{method:'HEAD'}),env);assert.equal(await r.text(),'');});
+
+test('research chat POST remains behind the existing PIN gate',async()=>{const request=req('/api/v1/research/query',{method:'POST',headers:{origin,'content-type':'application/json'},body:'{"kind":"doe-demo"}'},'chat-review-user');assert.equal((await worker.fetch(request,env)).status,401);const unlocked=await unlock(PIN,'chat-review-user');const cookie=unlocked.headers.get('set-cookie').split(';')[0];const r=await worker.fetch(req('/api/v1/research/query',{method:'POST',headers:{origin,cookie,'content-type':'application/json'},body:'{"kind":"doe-demo"}'},'chat-review-user'),env);assert.equal(r.status,200);assert.equal((await r.json()).synthetic,true);});

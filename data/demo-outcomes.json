@@ -1,0 +1,86 @@
+{
+  "synthetic": true,
+  "version": "demo-outcomes-0.1",
+  "notice": "Invented demonstration counts, not patient reports or scientific findings. No treatment recommendations.",
+  "outcomeLabels": [
+    "Improvement reported",
+    "Stable / no change reported",
+    "Worsening reported",
+    "Side-effect concerns",
+    "Not assessed / unknown"
+  ],
+  "groups": [
+    {
+      "extent": "Localized",
+      "followup": "6\u201312 months",
+      "approach": "Example approach A",
+      "counts": [
+        8,
+        6,
+        3,
+        4,
+        3
+      ]
+    },
+    {
+      "extent": "Localized",
+      "followup": "6\u201312 months",
+      "approach": "Example approach B",
+      "counts": [
+        7,
+        7,
+        2,
+        5,
+        3
+      ]
+    },
+    {
+      "extent": "Regional spread",
+      "followup": "6\u201312 months",
+      "approach": "Example approach A",
+      "counts": [
+        6,
+        7,
+        3,
+        4,
+        4
+      ]
+    },
+    {
+      "extent": "Regional spread",
+      "followup": "6\u201312 months",
+      "approach": "Example approach B",
+      "counts": [
+        8,
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    {
+      "extent": "Localized",
+      "followup": "1\u20133 years",
+      "approach": "Example approach A",
+      "counts": [
+        6,
+        8,
+        4,
+        3,
+        3
+      ]
+    },
+    {
+      "extent": "Localized",
+      "followup": "1\u20133 years",
+      "approach": "Example approach B",
+      "counts": [
+        7,
+        6,
+        4,
+        4,
+        3
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+const source=await readFile(new URL('../dist/server/index.js',import.meta.url),'utf8');
+// Business-logic tests call the internal application function; default.fetch is tested separately for every gate denial.
+const {fetchApplication,summarize,assessAccess,evaluateEffectiveness}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+const worker={fetch:fetchApplication};
+const get=(path,options)=>worker.fetch(new Request('https://test.invalid'+path,options));
+const json=async path=>(await get(path)).json();
+test('app serves GoOnco branding and self-hosted assets',async()=>{const r=await get('/');assert.equal(r.status,200);const html=await r.text();assert.match(html,/GoOnco/);assert.match(html,/goonco\.org/);assert.doesNotMatch(html,/GoodbyeCancer/);for(const p of ['/app.js','/styles.css','/favicon.svg'])assert.equal((await get(p)).status,200);});
+test('security headers block framing and external scripts',async()=>{const r=await get('/');assert.equal(r.headers.get('x-content-type-options'),'nosniff');assert.equal(r.headers.get('x-frame-options'),'DENY');assert.match(r.headers.get('content-security-policy'),/script-src 'self';/);assert.match(r.headers.get('content-security-policy'),/connect-src 'self';/);assert.match(r.headers.get('content-security-policy'),/form-action 'none'/);assert.equal(r.headers.get('cache-control'),'no-store');});
+test('health accurately declares disabled persistence and ingestion',async()=>{const r=await json('/api/v1/health');assert.equal(r.patientData,false);assert.equal(r.persistence,false);assert.equal(r.ingestion,false);});
+test('catalog contains six candidates and no approvals',async()=>{const r=await json('/api/v1/sources');assert.equal(r.items.length,6);assert.ok(r.items.every(s=>s.approval==='candidate'));assert.equal(new Set(r.items.map(s=>s.id)).size,6);assert.ok(r.items.every(s=>new URL(s.url).protocol==='https:'));});
+test('search and category filters compose',async()=>{const r=await json('/api/v1/sources?q=commons&category=Genomics');assert.equal(r.items.length,1);assert.equal(r.items[0].id,'gdc');});
+test('search is case-insensitive and has empty state',async()=>{assert.equal((await json('/api/v1/sources?q=PUBMED')).items.length,1);assert.equal((await json('/api/v1/sources?q=does-not-exist')).items.length,0);});
+test('oversize searches are rejected',async()=>{assert.equal((await get('/api/v1/sources?q='+ 'a'.repeat(201))).status,400);});
+test('analytics matches independent expected counts',async()=>{const r=await json('/api/v1/analytics');assert.deepEqual(r.categories,{'Education':1,'Publications':2,'Clinical trials':1,'Genomics':2});assert.equal(r.total,6);assert.equal(r.approved,0);assert.equal(r.clinicalOutcomeData,false);});
+test('filtered analytics uses same cohort as search',async()=>{const r=await json('/api/v1/analytics?category=Genomics');assert.equal(r.total,2);assert.deepEqual(r.categories,{Genomics:2});});
+test('empty analytics returns zero without fabricated rows',async()=>{const r=await json('/api/v1/analytics?q=missing');assert.equal(r.total,0);assert.deepEqual(r.categories,{});});
+test('governance denies ingestion for every actual source',async()=>{const r=await json('/api/v1/governance');assert.equal(r.writesEnabled,false);assert.ok(r.sources.every(s=>s.allowed===false));});
+test('source approval alone cannot approve dataset',()=>{assert.equal(assessAccess({approval:'approved'}).allowed,false);});
+const approved={approval:'approved',licenseReviewed:true,scientificReviewed:true,expiresAt:'2099-01-01T00:00:00Z'};
+test('pure policy requires independent dataset license and scientific gates',()=>{assert.equal(assessAccess({approval:'approved'},approved).allowed,true);assert.equal(assessAccess({approval:'approved'},{...approved,licenseReviewed:false}).allowed,false);assert.equal(assessAccess({approval:'approved'},{...approved,scientificReviewed:false}).allowed,false);});
+test('revoked and expired dataset approvals denied',()=>{assert.equal(assessAccess({approval:'approved'},{...approved,revoked:true}).allowed,false);assert.equal(assessAccess({approval:'approved'},{...approved,expiresAt:'2020-01-01'}).allowed,false);assert.equal(assessAccess({approval:'approved'},{...approved,expiresAt:'invalid'}).allowed,false);});
+test('no writes even with spoofed reviewer or user headers',async()=>{for(const path of ['/api/v1/sources','/api/v1/approve','/api/v1/feedback','/api/v1/upload']){const r=await get(path,{method:'POST',headers:{'oai-authenticated-user-id':'admin','x-role':'reviewer'},body:'{}'});assert.equal(r.status,405);}});
+test('mutation methods cannot modify static routes',async()=>{assert.equal((await get('/',{method:'DELETE'})).status,405);});
+test('unknown paths fail closed, including HEAD',async()=>{for(const method of ['GET','HEAD']){assert.equal((await get('/api/v1/not-real',{method})).status,404);assert.equal((await get('/missing',{method})).status,404);}});
+test('HEAD returns no body and retains content headers',async()=>{const r=await get('/',{method:'HEAD'});assert.equal(r.status,200);assert.equal(await r.text(),'');assert.match(r.headers.get('content-type'),/text\/html/);});
+test('capabilities do not claim unavailable clinical/auth features',async()=>{const r=await json('/api/v1/capabilities');assert.ok(r.unavailable.includes('patient-upload'));assert.ok(r.unavailable.includes('invitation-delivery'));assert.match(r.authentication,/roles not implemented/);});
+test('failed effectiveness never closes even after watch/review',()=>{assert.equal(evaluateEffectiveness(2,true,true).effective,false);});
+test('hitting target alone cannot close',()=>{assert.equal(evaluateEffectiveness(0,false,true).effective,false);assert.equal(evaluateEffectiveness(0,true,false).effective,false);});
+test('demonstration success never approves clinical knowledge',()=>{const r=evaluateEffectiveness(0,true,true);assert.equal(r.effective,true);assert.equal(r.synthetic,true);assert.equal(r.knowledgeApproved,false);});
+test('effectiveness API rejects missing, fractional, negative and excessive inputs',async()=>{for(const value of ['', '1.5','-1','21','abc'])assert.equal((await get('/api/v1/demo/effectiveness?remaining='+value)).status,400);assert.equal((await get('/api/v1/demo/effectiveness')).status,400);});
+test('effectiveness API labels synthetic inputs',async()=>{const r=await json('/api/v1/demo/effectiveness?remaining=0&window=true&review=true');assert.equal(r.effective,true);assert.equal(r.knowledgeApproved,false);});
+test('robots prevents draft indexing',async()=>{assert.match(await (await get('/robots.txt')).text(),/Disallow: \//);});
+test('UI contains draft-only disclosures and no browser persistence',async()=>{const r=await get('/app.js');const js=await r.text();assert.match(js,/Nothing was submitted or sent/);assert.doesNotMatch(js,/localStorage|sessionStorage|indexedDB|document\.cookie/);assert.match(js,/Candidate · review pending/);assert.match(js,/registered-charity status/);});
+
+test('governance model does not grant founder expert authority or active roles',async()=>{const m=await json('/api/v1/governance/model');assert.equal(m.writesEnabled,false);assert.equal(m.activeApprovals,0);assert.deepEqual(m.assignments,[]);assert.match(m.founderRole,/no automatic scientific/);assert.equal(m.gates.length,6);assert.equal(m.roles.length,6);assert.ok(m.releaseRules.some(x=>x.includes('own scientific claim')));});
+
+test('contribution modules served and form scripts are modules',async()=>{for(const path of ['/contributions.js','/contribution-policy.js']){const r=await get(path);assert.equal(r.status,200);assert.match(r.headers.get('content-type'),/javascript/);}assert.match(await (await get('/')).text(),/src="\/app.js" type="module"/);});
+test('health submission and message endpoints fail closed',async()=>{for(const path of ['/api/v1/contributions','/api/v1/messages','/api/v1/questions']){assert.equal((await get(path,{method:'POST',body:'{}'})).status,405);assert.equal((await get(path)).status,404);}});
+
+test('outcome example is synthetic and uses equal-context denominators',async()=>{const r=await json('/api/v1/demo/outcomes');assert.equal(r.synthetic,true);assert.equal(r.realPatientData,false);assert.equal(r.clinicalInference,false);assert.equal(r.groups.length,2);assert.deepEqual(r.groups.map(g=>g.total),[24,24]);assert.deepEqual(r.groups[0].counts,[8,6,3,4,3]);assert.ok(r.groups.every(g=>g.extent==='Localized'&&g.followup==='6–12 months'));});
+test('missing comparable examples remain empty',async()=>{const r=await json('/api/v1/demo/outcomes?extent=Regional%20spread&followup=1%E2%80%933%20years');assert.deepEqual(r.groups,[]);});
+test('outcome API rejects unlisted demographic/patient context',async()=>{assert.equal((await get('/api/v1/demo/outcomes?extent=JaneDoe')).status,400);});
+test('professional-advice notice is visible on every app shell',async()=>{const html=await (await get('/')).text();assert.match(html,/Information sharing only/);assert.match(html,/Do not start, stop, delay or change care/);assert.match(html,/Consult an appropriately qualified professional/);});

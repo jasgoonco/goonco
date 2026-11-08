@@ -1,0 +1,64 @@
+{
+  "id": "doe-process-demo-1",
+  "synthetic": true,
+  "design": "balanced-2x2-factorial",
+  "domain": "research-process",
+  "responseLabel": "Citation completeness",
+  "unit": "percent",
+  "factors": [
+    {
+      "id": "a",
+      "label": "Review checklist",
+      "levels": [
+        "Absent",
+        "Present"
+      ]
+    },
+    {
+      "id": "b",
+      "label": "Second check",
+      "levels": [
+        "Absent",
+        "Present"
+      ]
+    }
+  ],
+  "cells": [
+    {
+      "a": -1,
+      "b": -1,
+      "values": [
+        58,
+        60,
+        62
+      ]
+    },
+    {
+      "a": 1,
+      "b": -1,
+      "values": [
+        78,
+        80,
+        82
+      ]
+    },
+    {
+      "a": -1,
+      "b": 1,
+      "values": [
+        68,
+        70,
+        72
+      ]
+    },
+    {
+      "a": 1,
+      "b": 1,
+      "values": [
+        93,
+        95,
+        97
+      ]
+    }
+  ]
+}

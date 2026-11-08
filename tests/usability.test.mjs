@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {readAPI} from '../public/api.js';
+import {renderContribution} from '../public/contributions.js';
+test('API expiry has an explicit unlock error',async()=>{await assert.rejects(()=>readAPI('sources',async()=>new Response('{}',{status:401})),e=>e.code==='REVIEW_LOCKED'&&e.status===401&&/Unlock review/.test(e.message));});
+test('API authorization failure does not suggest an expired session',async()=>{await assert.rejects(()=>readAPI('sources',async()=>new Response('{}',{status:403})),e=>e.code==='API_ERROR'&&/not permitted/.test(e.message));});
+test('API errors do not expose raw provider error bodies',async()=>{await assert.rejects(()=>readAPI('sources',async()=>new Response('private diagnostic',{status:500})),e=>!e.message.includes('private diagnostic'));});
+test('API reader uses same-origin credentials and no cache',async()=>{let seen;const result=await readAPI('analytics',async(url,options)=>{seen={url,options};return new Response('{"total":6}');});assert.equal(result.total,6);assert.equal(seen.url,'/api/v1/analytics');assert.equal(seen.options.credentials,'same-origin');assert.equal(seen.options.cache,'no-store');});
+test('help from contribution form opens separately with explicit labeling',()=>{const html=renderContribution();const helpLinks=html.match(/<a[^>]*href="#questions"[^>]*>/g);assert.equal(helpLinks.length,2);assert.ok(helpLinks.every(link=>link.includes('target="_blank"')&&link.includes('rel="noopener"')&&link.includes('opens a new tab')));});
+test('built shell version matches package and expiry notice starts hidden',async()=>{const pkg=JSON.parse(await readFile(new URL('../package.json',import.meta.url)));const source=await readFile(new URL('../dist/server/index.js',import.meta.url),'utf8');const {fetchApplication}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));const html=await (await fetchApplication(new Request('https://test.invalid/'))).text();assert.ok(html.includes('v'+pkg.version+' · Open participation'));assert.match(html,/id="review-session-notice"[^>]*hidden/);assert.match(html,/aria-labelledby="source-detail-title"/);});
