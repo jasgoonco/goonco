@@ -59,7 +59,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "ae10c179b2ed302d59b5c2ba2e7fc3df9fd096859571b519771a37cbebc1f9ec"
+      "sha256": "fb03b2158a34484372258e2c393da7a4f842aa0a16699cd2a78e82d986dfc62c"
     },
     {
       "path": "public/api.js",
@@ -67,7 +67,7 @@
     },
     {
       "path": "public/app.js",
-      "sha256": "1fd5e69775bc71ab6f112565d2e48e2ebfc164f8d238fbade8dcb3701ba535b7"
+      "sha256": "3bdd1448a9401eadbbab045fda8d2380579f2d9cc2478b2326d618c8573aebfa"
     },
     {
       "path": "public/chat-planner.js",
@@ -123,15 +123,19 @@
     },
     {
       "path": "public/styles.css",
-      "sha256": "9972bc1e395a0549118f73dc46659cdc91ba633514b005e8768dfacd2f6457b2"
+      "sha256": "7732e508f4a1e2ce2c327f184ab04ef4b17567901974d429ba2563b2524c9ab1"
+    },
+    {
+      "path": "public/volunteer-application.js",
+      "sha256": "2cf8c63c319dbde5dcb46963be2bd7db9c81941abd5c4428569a046731bd8c21"
     },
     {
       "path": "README.md",
-      "sha256": "f93ece5cc86e9aacec8cf6f2071d5d054fa9a842801932d50595e502c559b80e"
+      "sha256": "9fc1b2cbe2d1f2144bc5dbb93caa32f0acad9ed39d56945a4f16a6a783972d2f"
     },
     {
       "path": "scripts/build.mjs",
-      "sha256": "97d7b5b2c7ba2fafdadafcd272a9f88f964d9c249aa740a3f0d9ea02c276e471"
+      "sha256": "8cb20c27fcfb14420d64e2423fa9265c3a21c155fe52b92a7620eaaaf79248fe"
     },
     {
       "path": "scripts/build.sh",
@@ -206,12 +210,16 @@
       "sha256": "531a8a5fae7e32f258bbe270f5922ea19795c0251b906f90204bcf5ee10af35d"
     },
     {
+      "path": "tests/volunteer-application.test.mjs",
+      "sha256": "5f9680fb922ab664c1beed48f7ef562359861756694028475ec241d283ddbfd9"
+    },
+    {
       "path": "tests/worker.test.mjs",
       "sha256": "211d33d9c8ae218ecc73df52196e5d56f8ad8e4d2a6bc73ed2cc256c302582af"
     },
     {
       "path": "worker/index.js",
-      "sha256": "172d9a1d2f6f4b47a59899fbb29100fc2bb8e0040592f3d1d644e1f565667059"
+      "sha256": "5ee63643d648bd8790b09fcde99b64e2cb2d8f971fb24f5918b65aff9e382a3d"
     },
     {
       "path": "worker/pin-gate.js",

@@ -39,3 +39,6 @@ Oncology discovery: search supports All oncology and 28 listed cancer categories
 
 
 Visual reports now compare live registry study designs, enrollment (actual versus estimated), endpoints, follow-up and posted-results availability. Clinician style organizes diagnosis, prognosis, medication and testing discussion questions. PSA adds a separately sourced CAP-2024 screening snapshot, not an API-derived clinical effect or personal prediction. All reports are information-only and open to professional review. See [outreach kit](OUTREACH_KIT.md) for draft invitations and bounded contribution roles.
+
+
+Volunteer interest: review a readable application at #volunteer, then open an email to volunteers@goonco.org, copy/share it or save a .txt file. Visitors send themselves; preparing or downloading does not submit an application. No receipt or membership is created by the form.

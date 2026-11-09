@@ -8,7 +8,7 @@ const DOE_DEMO=__DOE_DEMO__;
 __RESEARCH_TOPICS__
 __PUBLIC_CONNECTORS__
 __RESEARCH_QUERY__
-export const VERSION = '0.10.1';
+export const VERSION = '0.10.2';
 export function summarize(sources) {
   const categories = {};
   for (const source of sources) categories[source.category] = (categories[source.category] || 0) + 1;
