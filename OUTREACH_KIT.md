@@ -61,3 +61,8 @@ We cannot promise that cancer will remain nonmetastatic to age 90 or that any ap
 4. Expand invitations based on verified usefulness. Track actual reviews and accepted fixes; never invent member or clinical-impact figures.
 
 No bulk mailing, patient targeting, promotional tracking or vendor affiliation is authorized by this kit. Sending drafts requires an owner-selected recipient/channel and an appropriate sender.
+
+
+## Share directly from the site
+
+Visit https://goonco.org/#collaborate, choose an invitation audience, review the preview, then copy, download or open a WhatsApp, email, text or social-media composer. Visitors review and send themselves. No research questions or patient details are attached. Native sharing depends on device support; copy/download remain available. No GoOnco member account or ChatGPT login is required for browsing/sharing.

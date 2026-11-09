@@ -1,4 +1,4 @@
-import {renderCollaboration} from './collaboration.js';
+import {renderCollaboration,wireCollaboration} from './collaboration.js';
 import {renderResearchChat,wireResearchChat} from './research-chat.js';
 import {renderReviewerLab,wireReviewerLab} from './reviewers.js';
 import {readAPI} from './api.js';
@@ -50,6 +50,7 @@ function wire(){
 wireDetails();
 wireContributions(state.route,download);
 if(state.route==='chat')wireResearchChat(download);
+if(state.route==='collaborate')wireCollaboration(download);
 if(state.route==='reviewers')wireReviewerLab(download);
 if(state.route==='experiences')wireExperiences(api);
 if(state.route==='explorer') {$('#search').addEventListener('input',e=>{state.search=e.target.value;filterSources();});$('#category').addEventListener('change',e=>{state.category=e.target.value;filterSources();});$('#reset-filter').addEventListener('click',()=>{state.search='';state.category='';$('#search').value='';$('#category').value='';filterSources();});filterSources();}

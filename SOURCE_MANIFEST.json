@@ -55,11 +55,11 @@
     },
     {
       "path": "OUTREACH_KIT.md",
-      "sha256": "acb8c2a33eb3182fdf93c09f62a0628312416cd6563dd41d6d744cd8a5373e59"
+      "sha256": "18d78693ac9d19b5dd1bcfc33fbdda8b4930c540d079e4aa7ae4bfaecc8b3275"
     },
     {
       "path": "package.json",
-      "sha256": "ff9cd96bb9e12d4e4f7d44692bdcbb934c919ae78e241a4a8e5beacb7cea8698"
+      "sha256": "ae10c179b2ed302d59b5c2ba2e7fc3df9fd096859571b519771a37cbebc1f9ec"
     },
     {
       "path": "public/api.js",
@@ -67,7 +67,7 @@
     },
     {
       "path": "public/app.js",
-      "sha256": "14819dd8250e81420a6ef5ed8a1edf576f756311de2b2cc65dfed6b958f4caac"
+      "sha256": "1fd5e69775bc71ab6f112565d2e48e2ebfc164f8d238fbade8dcb3701ba535b7"
     },
     {
       "path": "public/chat-planner.js",
@@ -75,7 +75,7 @@
     },
     {
       "path": "public/collaboration.js",
-      "sha256": "bed8da14c7593c032237fcea66c5c9526e00695660eba24cf1198e081ce7f0c2"
+      "sha256": "47c727ef1bde0ff7b6abf1db202be53f353dc8d92f18a8f4c6aa4b0a0531e941"
     },
     {
       "path": "public/contribution-policy.js",
@@ -95,7 +95,7 @@
     },
     {
       "path": "public/index.html",
-      "sha256": "33cbaf8bf83cef5e7d239d17928d7af4fbd73f243f1dfc60c0b0fd9462382ead"
+      "sha256": "b885126993c27137ac0e9cb907b23852d623f20976d55f56105529cb4cc4ae92"
     },
     {
       "path": "public/learning-report.js",
@@ -123,7 +123,7 @@
     },
     {
       "path": "public/styles.css",
-      "sha256": "b7e69b2345d7377a123006f0606d14c3d633d415d9fba5ef4c5d77910fbe82d5"
+      "sha256": "9972bc1e395a0549118f73dc46659cdc91ba633514b005e8768dfacd2f6457b2"
     },
     {
       "path": "README.md",
@@ -164,6 +164,10 @@
     {
       "path": "tests/evidence-report.test.mjs",
       "sha256": "13bb79dce5429a1521c809462005dfbedc85b79a878bc42432b83fa889a4f014"
+    },
+    {
+      "path": "tests/invitation-sharing.test.mjs",
+      "sha256": "02143a6c01d75387cd24994ed3e35bd48330984020b07befb3486c5c62afbe00"
     },
     {
       "path": "tests/member-workspace.test.mjs",
@@ -207,7 +211,7 @@
     },
     {
       "path": "worker/index.js",
-      "sha256": "17c5aa83639b800bc8d220a2554cb86b9e30f5224dd512c8168c14abb8014668"
+      "sha256": "172d9a1d2f6f4b47a59899fbb29100fc2bb8e0040592f3d1d644e1f565667059"
     },
     {
       "path": "worker/pin-gate.js",
