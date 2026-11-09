@@ -36,3 +36,6 @@ The original MVP code and accompanying contribution documentation are MIT licens
 
 
 Oncology discovery: search supports All oncology and 28 listed cancer categories across PubMed, Europe PMC and ClinicalTrials.gov. Only recognized cancer/topic settings are transmitted, never raw questions. Check the displayed scope; arbitrary medicine names and detailed natural-language concepts are not yet searched. Genomic connectors remain fixed prostate snapshots and are excluded from other cancer scopes. Broad-cancer 8D reports are research-planning templates, not disease-specific reviewed explanations.
+
+
+Visual reports now compare live registry study designs, enrollment (actual versus estimated), endpoints, follow-up and posted-results availability. Clinician style organizes diagnosis, prognosis, medication and testing discussion questions. PSA adds a separately sourced CAP-2024 screening snapshot, not an API-derived clinical effect or personal prediction. All reports are information-only and open to professional review. See [outreach kit](OUTREACH_KIT.md) for draft invitations and bounded contribution roles.

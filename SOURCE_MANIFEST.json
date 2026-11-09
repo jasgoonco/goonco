@@ -10,6 +10,10 @@
       "sha256": "a468bbdd0a41939b0e941c837a2bb6614459ac38c22dbc413caae5aa18c2f08b"
     },
     {
+      "path": ".github/ISSUE_TEMPLATE/research-hypothesis.md",
+      "sha256": "2c479deac46028548524d024bb8a01dcac6533341a5ee1a517e3563f7c196bb1"
+    },
+    {
       "path": ".github/PULL_REQUEST_TEMPLATE.md",
       "sha256": "7ccfa18aefdf1d6234f042476cc668df3fbf4b4875f732daa494ab3cb37d7863"
     },
@@ -50,8 +54,12 @@
       "sha256": "1a72016dd55dd7b594e2e01814f80937b2e0241086735b613874fc4fb878f12c"
     },
     {
+      "path": "OUTREACH_KIT.md",
+      "sha256": "acb8c2a33eb3182fdf93c09f62a0628312416cd6563dd41d6d744cd8a5373e59"
+    },
+    {
       "path": "package.json",
-      "sha256": "07a379b4c91834eba445b08cf67c5b16832db6351d15cd849b2f170120f74ab9"
+      "sha256": "ff9cd96bb9e12d4e4f7d44692bdcbb934c919ae78e241a4a8e5beacb7cea8698"
     },
     {
       "path": "public/api.js",
@@ -67,7 +75,7 @@
     },
     {
       "path": "public/collaboration.js",
-      "sha256": "f7eabba51be3474126a31deb2fb4960675b55b3a7f246b4a092e75b2b6d642b9"
+      "sha256": "bed8da14c7593c032237fcea66c5c9526e00695660eba24cf1198e081ce7f0c2"
     },
     {
       "path": "public/contribution-policy.js",
@@ -91,7 +99,7 @@
     },
     {
       "path": "public/learning-report.js",
-      "sha256": "45a6609714c773e666054275b170671bb7cfd3058d5b22c8a5c7a189b11ae106"
+      "sha256": "1fe04d1d77c80de93c2b8957ed5c19fa3145301afdfd4ad00c68e5413c0564a6"
     },
     {
       "path": "public/member-workspace.js",
@@ -99,7 +107,7 @@
     },
     {
       "path": "public/research-chat.js",
-      "sha256": "b6fc0ed09f8763d2fa72209ebcff5afaab9877532d22293b0ce61ad50baff253"
+      "sha256": "62415c9466710871d47a0db0764f900af2144f5553d47d729543e2878d1c496f"
     },
     {
       "path": "public/research-topics.js",
@@ -115,11 +123,11 @@
     },
     {
       "path": "public/styles.css",
-      "sha256": "bd54460a4d723b147c5dc13cf1a3fe00f2d340e45913e6f9b3eb68166057a714"
+      "sha256": "b7e69b2345d7377a123006f0606d14c3d633d415d9fba5ef4c5d77910fbe82d5"
     },
     {
       "path": "README.md",
-      "sha256": "54c7f4c6615d22398cb5bc54d3f3636e205814d2d3372aa1ebcf500214de20a6"
+      "sha256": "f93ece5cc86e9aacec8cf6f2071d5d054fa9a842801932d50595e502c559b80e"
     },
     {
       "path": "scripts/build.mjs",
@@ -152,6 +160,10 @@
     {
       "path": "tests/contributions.test.mjs",
       "sha256": "1ac6ae60cd9382cd3bfcd9c21fd9381d9457ee309fd04be2da7daadffb21e117"
+    },
+    {
+      "path": "tests/evidence-report.test.mjs",
+      "sha256": "13bb79dce5429a1521c809462005dfbedc85b79a878bc42432b83fa889a4f014"
     },
     {
       "path": "tests/member-workspace.test.mjs",
@@ -195,7 +207,7 @@
     },
     {
       "path": "worker/index.js",
-      "sha256": "df97d01ee0e01a98c4acf5b12650db48e3196b1ade413873a509d9b10970177f"
+      "sha256": "17c5aa83639b800bc8d220a2554cb86b9e30f5224dd512c8168c14abb8014668"
     },
     {
       "path": "worker/pin-gate.js",
@@ -207,7 +219,7 @@
     },
     {
       "path": "worker/public-connectors.js",
-      "sha256": "a8157cf959f7ea77b5f0218032af7d974646acda5889b0ae47e8780ee0cecf0e"
+      "sha256": "4d0e3f5b343523dcee3bfbd289c50d6c3de435f105c97675f71b6d1be97890e5"
     },
     {
       "path": "worker/research-query.js",
