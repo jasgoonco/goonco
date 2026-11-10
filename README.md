@@ -47,3 +47,8 @@ Volunteer interest: review a readable application at #volunteer, then open an em
 ## Simple contribution workspace (v0.12)
 
 Open `#share` for patient/caregiver and doctor/professional forms across the listed cancer types. Entries remain in browser memory, never submitted. Review entries, preserve corrections, inspect unknown/repeated classifications and four descriptive charts. Save a private JSON workspace (revision history) or current-classification CSV; reopen only GoOnco local JSON on the same device. No names, free-text health stories, medical files or exact locations/dates. Broad categories do not guarantee anonymity. Optional future research/contact preferences grant no access today. Shared health collection, public rows, professional verification and private avatar messaging are not enabled. Use fictional examples during review.
+
+
+## Relevant information after an entry (v0.12.1)
+
+After Review and Add locally, the page displays patient/caregiver or professional research guidance. Entry fields shape local questions; a trace explains each use and limit. Cancer/treatment-topic references appear immediately. An optional explicit lookup sends only displayed cancer/topic and a registry-status setting to the existing public research API. No full entry, avatar label, age, region, extent, outcome or follow-up is sent. Recruiting-only is the patient default; professionals can inspect all statuses, including planned and completed studies. Trials list protocol descriptions, phases, endpoints and provenance; these do not establish eligibility, effectiveness or future approval. Shared storage and operative consent remain on hold/TBD. No ChatGPT, Claude or other model inference is connected.

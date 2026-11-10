@@ -1,4 +1,4 @@
-// Same-origin public-metadata API reader. Never send local health-draft values here.
+// Same-origin public-metadata API reader. Never send full local entries here; any optional topic-only lookup must disclose its selected settings.
 export async function readAPI(path,fetcher=fetch){
  const response=await fetcher('/api/v1/'+path,{credentials:'same-origin',cache:'no-store'});
  if(!response.ok){

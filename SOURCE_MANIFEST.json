@@ -59,15 +59,15 @@
     },
     {
       "path": "package.json",
-      "sha256": "21c1d575e6754e17e9c902f79fb407c7c1bae25dcfb2ecf49e6b9f3800b1b9d1"
+      "sha256": "7a095e8df9d9e916c7f6bfaae49c887be7b9872634d9147e30e7be9a1195fbcf"
     },
     {
       "path": "public/academic-theme.css",
-      "sha256": "8896d81ffce59a8441d14c362a97bd0954233250786237b88e045175229163f4"
+      "sha256": "cd1d71ff575eb6ba167e2cd9304bb3300b7e0eed978b2502dacb360ca2d966ba"
     },
     {
       "path": "public/api.js",
-      "sha256": "68c7f917e8c7f86b416e0a0595e1eca51e69fb93f155990022e5c47b5c8b3d89"
+      "sha256": "9164a6eee273032e6fee879920a6e7203193158824d0d8cba1a4b174ba8a3d74"
     },
     {
       "path": "public/app.js",
@@ -88,6 +88,10 @@
     {
       "path": "public/contributions.js",
       "sha256": "0a1650a4dda155b0f73604784f790e0194bfd715d039136dd1defefaaf2103a2"
+    },
+    {
+      "path": "public/entry-research.js",
+      "sha256": "d7d7fcbbdde714a01d953ef68c1675bbabb3245d3e1beb1af49519fb0279fa50"
     },
     {
       "path": "public/experiences.js",
@@ -135,7 +139,7 @@
     },
     {
       "path": "public/simple-contributions.js",
-      "sha256": "5e86f39482f0ee799d5fa4d3579657cf052cb780733c9696e10f0c24de10ab7f"
+      "sha256": "916641f206441447c50215c1d35ef5819037f63313d87446232b0bed2c0aa5c1"
     },
     {
       "path": "public/styles.css",
@@ -147,11 +151,11 @@
     },
     {
       "path": "README.md",
-      "sha256": "e4337c2b98ba8352cc1e7ef0b60b8e1c8bdc80ed764e3e0055704ac48022d66f"
+      "sha256": "c21ad605ab570049948228e2ab6d54486dbfcc1158eee87156fcbc39b3955a1e"
     },
     {
       "path": "scripts/build.mjs",
-      "sha256": "0fd7f26add9d8c52bcc29d1b177b91d06c6c123119b5816c6f74e382e2ac6bf1"
+      "sha256": "91cf7fbc84e560a862285672b982ec52877ef50076d54a6ed70cfbf94b6f22c7"
     },
     {
       "path": "scripts/build.sh",
@@ -180,6 +184,10 @@
     {
       "path": "tests/contributions.test.mjs",
       "sha256": "1ac6ae60cd9382cd3bfcd9c21fd9381d9457ee309fd04be2da7daadffb21e117"
+    },
+    {
+      "path": "tests/entry-research.test.mjs",
+      "sha256": "c29cee650a25cd79ae14b6ed3ecb145c1733f5d80ef8669221aeeef732081980"
     },
     {
       "path": "tests/evidence-report.test.mjs",
@@ -219,7 +227,7 @@
     },
     {
       "path": "tests/simple-contributions.test.mjs",
-      "sha256": "ffe292c64d5ce29dc4a375c16d503932c863a46ad03165c8013f7bae1f71dc47"
+      "sha256": "3cef70fcffdb39d8e3e64c0e0445ba7b1db6b78090fa2077965e525f27994d1f"
     },
     {
       "path": "tests/topic-learning.test.mjs",
@@ -243,7 +251,7 @@
     },
     {
       "path": "worker/index.js",
-      "sha256": "51848b155a3d742c869356276c83e476771b9389b4eef010028cba47cb1cd8db"
+      "sha256": "666ea89cb465f8c5e063e144e66c54d4fd6a08181797ed0ec46b59071434c004"
     },
     {
       "path": "worker/pin-gate.js",
