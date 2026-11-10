@@ -59,11 +59,11 @@
     },
     {
       "path": "package.json",
-      "sha256": "8f0edbee5d86947540ae3ffd71072715248d166121118c1905efa5e7a5489f64"
+      "sha256": "21c1d575e6754e17e9c902f79fb407c7c1bae25dcfb2ecf49e6b9f3800b1b9d1"
     },
     {
       "path": "public/academic-theme.css",
-      "sha256": "a2c1ec8f0e6d5bb9757898ea216ef45ab0e793ce02d1c8e15ed2606c4e5043a3"
+      "sha256": "8896d81ffce59a8441d14c362a97bd0954233250786237b88e045175229163f4"
     },
     {
       "path": "public/api.js",
@@ -71,7 +71,7 @@
     },
     {
       "path": "public/app.js",
-      "sha256": "3bdd1448a9401eadbbab045fda8d2380579f2d9cc2478b2326d618c8573aebfa"
+      "sha256": "ce2079d595267f81f7323f426cde3640dc4fa8e24c9f6020d28c8c8c051d31a7"
     },
     {
       "path": "public/chat-planner.js",
@@ -87,7 +87,7 @@
     },
     {
       "path": "public/contributions.js",
-      "sha256": "f0b13be659269d4ee1ac983be1df30dac34acc4592f7bfaa4f5080410c74c687"
+      "sha256": "0a1650a4dda155b0f73604784f790e0194bfd715d039136dd1defefaaf2103a2"
     },
     {
       "path": "public/experiences.js",
@@ -130,6 +130,14 @@
       "sha256": "48e1ae2e6daccccf699bc56aa1dac55c0d5f5961e9e62028d27b0eee98cec9c7"
     },
     {
+      "path": "public/simple-contribution-policy.js",
+      "sha256": "ca74d919760a075eace7527458acbd28c9998c5ac3920841984507710c94f19b"
+    },
+    {
+      "path": "public/simple-contributions.js",
+      "sha256": "5e86f39482f0ee799d5fa4d3579657cf052cb780733c9696e10f0c24de10ab7f"
+    },
+    {
       "path": "public/styles.css",
       "sha256": "07a29beaff606bfabedefaa399c1e9c8ce9a4d024a0ba2c28f1a4b87d1afa787"
     },
@@ -139,11 +147,11 @@
     },
     {
       "path": "README.md",
-      "sha256": "9fc1b2cbe2d1f2144bc5dbb93caa32f0acad9ed39d56945a4f16a6a783972d2f"
+      "sha256": "e4337c2b98ba8352cc1e7ef0b60b8e1c8bdc80ed764e3e0055704ac48022d66f"
     },
     {
       "path": "scripts/build.mjs",
-      "sha256": "697d0502edf0c44b4e82365046964c5e8bbd9a82b40abbd80fab284d6386bba7"
+      "sha256": "0fd7f26add9d8c52bcc29d1b177b91d06c6c123119b5816c6f74e382e2ac6bf1"
     },
     {
       "path": "scripts/build.sh",
@@ -210,6 +218,10 @@
       "sha256": "cb8d0cea12ecc936626924db27434c73fbf2e8cc3bde5bea4578eabe39366ff9"
     },
     {
+      "path": "tests/simple-contributions.test.mjs",
+      "sha256": "ffe292c64d5ce29dc4a375c16d503932c863a46ad03165c8013f7bae1f71dc47"
+    },
+    {
       "path": "tests/topic-learning.test.mjs",
       "sha256": "6b34cf5385de3f30e007a847435df14bd14cf77d9fcbc8f24a16cc6b90eed8e1"
     },
@@ -231,7 +243,7 @@
     },
     {
       "path": "worker/index.js",
-      "sha256": "74daee067a03b7a80ecb0440bf3653132a98cd469e1b69568533424e1dcde5a4"
+      "sha256": "51848b155a3d742c869356276c83e476771b9389b4eef010028cba47cb1cd8db"
     },
     {
       "path": "worker/pin-gate.js",

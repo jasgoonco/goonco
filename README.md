@@ -42,3 +42,8 @@ Visual reports now compare live registry study designs, enrollment (actual versu
 
 
 Volunteer interest: review a readable application at #volunteer, then open an email to volunteers@goonco.org, copy/share it or save a .txt file. Visitors send themselves; preparing or downloading does not submit an application. No receipt or membership is created by the form.
+
+
+## Simple contribution workspace (v0.12)
+
+Open `#share` for patient/caregiver and doctor/professional forms across the listed cancer types. Entries remain in browser memory, never submitted. Review entries, preserve corrections, inspect unknown/repeated classifications and four descriptive charts. Save a private JSON workspace (revision history) or current-classification CSV; reopen only GoOnco local JSON on the same device. No names, free-text health stories, medical files or exact locations/dates. Broad categories do not guarantee anonymity. Optional future research/contact preferences grant no access today. Shared health collection, public rows, professional verification and private avatar messaging are not enabled. Use fictional examples during review.
