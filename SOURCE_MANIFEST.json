@@ -59,7 +59,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "fb03b2158a34484372258e2c393da7a4f842aa0a16699cd2a78e82d986dfc62c"
+      "sha256": "97126dae69812cc28fb7c66d55f6c4113293070fa375056fa081d1b11a78f9eb"
     },
     {
       "path": "public/api.js",
@@ -99,19 +99,23 @@
     },
     {
       "path": "public/learning-report.js",
-      "sha256": "1fe04d1d77c80de93c2b8957ed5c19fa3145301afdfd4ad00c68e5413c0564a6"
+      "sha256": "60e5dfc44618c60d5f05085a2d51270ee2c1fd688f562a174796a0e1ff4655ed"
     },
     {
       "path": "public/member-workspace.js",
       "sha256": "5147b5ad7d85d26e4100b6612528f08f55d4a4d026ecb95ebcde9bb63b8db5f3"
     },
     {
+      "path": "public/question-brief.js",
+      "sha256": "bc5016923a7eb282d81594c8c556245932a646f2af370040836333f17a354b93"
+    },
+    {
       "path": "public/research-chat.js",
-      "sha256": "62415c9466710871d47a0db0764f900af2144f5553d47d729543e2878d1c496f"
+      "sha256": "7d94d7b8db9075220dcd195d1abc0c9b60ce7a312141e1708f58faf30484555b"
     },
     {
       "path": "public/research-topics.js",
-      "sha256": "92a54fc566ff21736eadb1ca049d2fa7fd7db47582c669cd19c9c62ac93ba3bc"
+      "sha256": "a87fa3503f0350d02e7b8782a289fec96f82d1f5e6180d6669d531357895eb7e"
     },
     {
       "path": "public/reviewer-policy.js",
@@ -123,7 +127,7 @@
     },
     {
       "path": "public/styles.css",
-      "sha256": "7732e508f4a1e2ce2c327f184ab04ef4b17567901974d429ba2563b2524c9ab1"
+      "sha256": "07a29beaff606bfabedefaa399c1e9c8ce9a4d024a0ba2c28f1a4b87d1afa787"
     },
     {
       "path": "public/volunteer-application.js",
@@ -135,7 +139,7 @@
     },
     {
       "path": "scripts/build.mjs",
-      "sha256": "8cb20c27fcfb14420d64e2423fa9265c3a21c155fe52b92a7620eaaaf79248fe"
+      "sha256": "30a21a9f8e0e6975109312e4f6253f69923db81da34ae1891e7e7221f7fa194e"
     },
     {
       "path": "scripts/build.sh",
@@ -190,6 +194,10 @@
       "sha256": "97d7f8f87c3cf7a2c164bdad0eefae90b6f0f020be598892f12cfa288160204f"
     },
     {
+      "path": "tests/question-brief.test.mjs",
+      "sha256": "abb71d3d4aa116bbf7f868984a48b2aff5cdc06b7fc5a72a11958966c34ccb45"
+    },
+    {
       "path": "tests/research-chat.test.mjs",
       "sha256": "bf9577620707ff5b2770c6b65ae5ea86cceeaff52571745319193852b6869b9a"
     },
@@ -219,7 +227,7 @@
     },
     {
       "path": "worker/index.js",
-      "sha256": "5ee63643d648bd8790b09fcde99b64e2cb2d8f971fb24f5918b65aff9e382a3d"
+      "sha256": "4753f671c8dc60fa8a8aff65765ea276693fe38f39deaab04a720e2d9abf0463"
     },
     {
       "path": "worker/pin-gate.js",
